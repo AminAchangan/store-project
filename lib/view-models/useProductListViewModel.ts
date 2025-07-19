@@ -37,8 +37,12 @@ export function useProductList(
         const url = `/products?select=*&order=${orderString}` + (filters ? `&${filters}` : "");
         const response = await supabaseAxios.get(url);
         setProducts(response.data || []);
-      } catch (error: any) {
-        console.error("Failed to fetch products:", error.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error("Failed to fetch products:", error.message);
+        } else {
+          console.error("Failed to fetch products:", error);
+        }
       } finally {
         setLoading(false);
       }

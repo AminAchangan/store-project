@@ -37,7 +37,7 @@ export default function ContactUsSection() {
           Contact Us
         </h2>
         <p className="text-lg text-primary-400 mb-10">
-          We'd love to hear from you! Whether you have a question about our
+          We&apos;d love to hear from you! Whether you have a question about our
           products or just want to say hi, feel free to reach out.
         </p>
         <form

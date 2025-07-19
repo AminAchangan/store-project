@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Blob animation */
 @keyframes blob {
   0% {
     transform: translate(0px, 0px) scale(1);
@@ -225,20 +224,14 @@ table td {
   display: none;
 }
 
-/*  */
 @layer base {
   :root {
-    /* ... existing variables ... */
-
-    /* این متغیرهای رنگ را اضافه کنید */
     --color-1: 0 100% 63%;
     --color-2: 270 100% 63%;
     --color-3: 210 100% 63%;
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
   }
-
-  /* ... */
 }
 @layer utilities {
   @keyframes fadeIn {

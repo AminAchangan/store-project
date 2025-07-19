@@ -11,7 +11,8 @@ import Breadcrumb from "@/ui/Breadcrumb";
 import { toast } from "react-hot-toast";
 
 export default function ProductPage() {
-  const { id } = useParams<any>();
+  const params = useParams<{ id: string }>();
+  const id = params?.id ?? "";
   const { product, loading } = useProductViewModel(id);
   const colors =
     typeof product?.colors === "string"
@@ -24,7 +25,7 @@ export default function ProductPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddToCart = async () => {
-    if (isLoading) return;
+    if (isLoading || !product) return;
     setIsLoading(true);
     try {
       await axios.post("/api/cart", {

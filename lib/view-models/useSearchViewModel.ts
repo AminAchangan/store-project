@@ -1,12 +1,11 @@
 import { Product } from "@/types/Product";
 import axios from "axios";
-import { use, useState } from "react";
+import { useState } from "react";
 
 export function useSearchViewModel() {
   const [results, setResults] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  setResults(data);
 
   const fetchResults = async (query: string) => {
     if (!query) {
@@ -32,7 +31,7 @@ export function useSearchViewModel() {
         }
       );
       setResults(data);
-    } catch (err: any) {
+    } catch {
       console.log("we have problem in getting data !");
     } finally {
       setLoading(false);
