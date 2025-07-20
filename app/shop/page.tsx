@@ -9,7 +9,7 @@ import Breadcrumb from "@/ui/Breadcrumb";
 
 export default function ShopPage() {
   const searchParams = useSearchParams();
-  const initialCategory = searchParams.get("category") || "all";
+  const initialCategory = searchParams?.get("category") || "all";
   const [sortBy, setSortBy] = useState("newest");
   const [categories, setCategories] = useState(initialCategory);
   const [price, setPrice] = useState("all");

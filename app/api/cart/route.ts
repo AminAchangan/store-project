@@ -57,7 +57,7 @@ export async function GET() {
     price: item.price,
     image_url: item.image_url,
     product_id: item.product_id,
-    name: item.products?.name || "",
+    name: item.products?.[0]?.name || "",
   }));
 
   return NextResponse.json(result);
