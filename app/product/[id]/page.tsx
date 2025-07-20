@@ -14,10 +14,12 @@ export default function ProductPage() {
   const params = useParams<{ id: string }>();
   const id = params?.id ?? "";
   const { product, loading } = useProductViewModel(id);
+
   const colors =
     typeof product?.colors === "string"
       ? JSON.parse(product.colors)
       : product?.colors;
+
   const [count, setCount] = useState<number>(1);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
@@ -43,14 +45,20 @@ export default function ProductPage() {
     }
   };
 
+  // بخش اصلاح شده: این useEffect فقط زمانی مقادیر را تنظیم می‌کند که هنوز null باشند (یعنی مقداردهی اولیه نشده باشند)
   useEffect(() => {
     if (product) {
-      setSelectedImage(product.image_url);
-      if (colors && colors.length > 0) {
+      // فقط زمانی selectedImage را تنظیم کن که هنوز null باشد (بارگذاری اولیه)
+      if (selectedImage === null) {
+        setSelectedImage(product.image_url);
+      }
+      // فقط زمانی selectedColor را تنظیم کن که هنوز null باشد (بارگذاری اولیه)
+      // و اگر رنگ‌ها موجود باشند
+      if (selectedColor === null && colors && colors.length > 0) {
         setSelectedColor(colors[0]);
       }
     }
-  }, [product]);
+  }, [product, colors, selectedImage, selectedColor]); // این‌ها را برای ESLint در وابستگی‌ها نگه می‌داریم، اما منطق داخل useEffect از بازنویسی جلوگیری می‌کند.
 
   if (loading)
     return (

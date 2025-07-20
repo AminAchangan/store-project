@@ -88,7 +88,6 @@ export default function ContactUsSection() {
         </form>
       </div>
       <div className="mx-auto md:mt-auto relative">
-
         <Image
           alt=""
           width={500}
